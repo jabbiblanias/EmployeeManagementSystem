@@ -38,7 +38,3 @@ A Windows Forms application for managing employee events, attendance, and admini
 - `EditEvent.cs` - Event editing functionality
 - `EventForm.cs` - Event creation and details
 - `Program.cs` - Application entry point
-
-## License
-
-Specify your license here.
