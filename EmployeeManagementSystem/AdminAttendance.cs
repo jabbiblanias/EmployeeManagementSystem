@@ -70,7 +70,6 @@ namespace EmployeeManagementSystem
             // Set the AutoCompleteCustomSource property to the AutoCompleteStringCollection
             textBoxSearchName.AutoCompleteCustomSource = ad.employeeNamesData();
         }
-
         private void btnRecent_Click(object sender, EventArgs e)
         {
             displayEmployeesAttendaceListData();
