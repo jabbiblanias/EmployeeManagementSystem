@@ -35,8 +35,7 @@ namespace EmployeeManagementSystem
                 string query = @"SELECT 
                             CASE 
                                 WHEN EXISTS (SELECT 1 FROM TBL_EVENTS WHERE TITLE = @TITLE AND EVENT_DATE = @EVENT_DATE) THEN 1 ELSE 0 
-                            END AS TitleExists"
-                ;
+                            END AS TitleExists";
 
                 using (SqlCommand command = new SqlCommand(query, connect))
                 {
@@ -48,15 +47,19 @@ namespace EmployeeManagementSystem
                         if (reader.Read())
                         {
                             bool TitleExists = reader.GetInt32(0) == 1;
-
+                            connect.Close();
                             if (TitleExists)
                             {
-                                MessageBox.Show("The title is already taken, name a different title."
+                                MessageBox.Show("The title is already taken, name a different title"
+                                    , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else if (string.IsNullOrWhiteSpace(textBoxTitle.Text.Trim()))
+                            {
+                                MessageBox.Show("The title cannot be empty"
                                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
-                                connect.Close();
                                 connect.Open();
 
                                 string updateData = "INSERT INTO TBL_EVENTS (TITLE, DESCRIPTION, LOCATION, EVENT_DATE, START_TIME, END_TIME, ACCOUNT_ID) " +

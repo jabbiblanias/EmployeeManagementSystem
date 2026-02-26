@@ -34,17 +34,7 @@ namespace EmployeeManagementSystem
                 {
                     connect.Open();
 
-                    string selectData = "SELECT DATE, CLOCK_IN, CLOCK_OUT, " +
-                        "CASE " +
-                        "WHEN CLOCK_IN > '07:30:00' THEN 'Late' " +
-                        "ELSE 'On Time' " +
-                        "END AS STATUS, " +
-                        "CASE " +
-                        "WHEN DATEDIFF(MINUTE, '16:30', CLOCK_OUT) > 0 THEN " +
-                        "CONVERT(VARCHAR, DATEADD(MINUTE, DATEDIFF(MINUTE, '16:30', CLOCK_OUT), 0), 108) " +
-                        "ELSE '00:00:00' " +
-                        "END AS OVERTIME " +
-                        "FROM " +
+                    string selectData = "SELECT DATE, CLOCK_IN, CLOCK_OUT, STATUS, OVERTIME FROM " +
                         "TBL_ATTENDANCE WHERE ACCOUNT_ID = @ACCOUNT_ID ORDER BY DATE DESC";
 
                     using (SqlCommand cmd = new SqlCommand(selectData, connect))
@@ -94,17 +84,7 @@ namespace EmployeeManagementSystem
                 {
                     connect.Open();
 
-                    string selectData = "SELECT DATE, CLOCK_IN, CLOCK_OUT, " +
-                        "CASE " +
-                        "WHEN CLOCK_IN > '07:30:00' THEN 'Late' " +
-                        "ELSE 'On Time' " +
-                        "END AS STATUS, " +
-                        "CASE " +
-                        "WHEN DATEDIFF(MINUTE, '16:30', CLOCK_OUT) > 0 THEN " +
-                        "CONVERT(VARCHAR, DATEADD(MINUTE, DATEDIFF(MINUTE, '16:30', CLOCK_OUT), 0), 108) " +
-                        "ELSE '00:00:00' " +
-                        "END AS OVERTIME " +
-                        "FROM " +
+                    string selectData = "SELECT DATE, CLOCK_IN, CLOCK_OUT, STATUS, OVERTIME FROM " +
                         "TBL_ATTENDANCE WHERE ACCOUNT_ID = @ACCOUNT_ID AND DATE = @DATE; ";
 
                     using (SqlCommand cmd = new SqlCommand(selectData, connect))
@@ -155,18 +135,8 @@ namespace EmployeeManagementSystem
                 {
                     connect.Open();
 
-                    string selectData = "SELECT DATE, CLOCK_IN, CLOCK_OUT, " +
-                        "CASE " +
-                        "WHEN CLOCK_IN > '07:30:00' THEN 'Late' " +
-                        "ELSE 'On Time' " +
-                        "END AS STATUS, " +
-                        "CASE " +
-                        "WHEN DATEDIFF(MINUTE, '16:30', CLOCK_OUT) > 0 THEN " +
-                        "CONVERT(VARCHAR, DATEADD(MINUTE, DATEDIFF(MINUTE, '16:30', CLOCK_OUT), 0), 108) " +
-                        "ELSE '00:00:00' " +
-                        "END AS OVERTIME " +
-                        "FROM " +
-                        "TBL_ATTENDANCE WHERE ACCOUNT_ID = @ACCOUNT_ID AND (YEAR(DATE) >= @StartYear AND MONTH(DATE) >= @StartMonth) " +
+                    string selectData = "SELECT DATE, CLOCK_IN, CLOCK_OUT,STATUS, OVERTIME FROM TBL_ATTENDANCE " +
+                        "WHERE ACCOUNT_ID = @ACCOUNT_ID AND (YEAR(DATE) >= @StartYear AND MONTH(DATE) >= @StartMonth) " +
                         "AND (YEAR(DATE) <= @EndYear AND MONTH(DATE) <= @EndMonth) " +
                         "ORDER BY DATE ASC";
 
@@ -182,18 +152,18 @@ namespace EmployeeManagementSystem
                         while (reader.Read())
                         {
                             EmployeeAttendanceData ead = new EmployeeAttendanceData(loginView);
-                            ead.Date = reader.GetDateTime(reader.GetOrdinal("DATE"));
+                            ead.Date = (DateTime)reader["DATE"];
                             if (!reader.IsDBNull(reader.GetOrdinal("CLOCK_IN")))
                             {
-                                ead.ClockIn = DateTime.Today.Add(reader.GetTimeSpan(reader.GetOrdinal("CLOCK_IN"))).ToString("hh:mm tt");
+                                ead.ClockIn = DateTime.Today.Add((TimeSpan)reader["CLOCK_IN"]).ToString("hh:mm tt");
                             }
 
                             if (!reader.IsDBNull(reader.GetOrdinal("CLOCK_OUT")))
                             {
-                                ead.ClockOut = DateTime.Today.Add(reader.GetTimeSpan(reader.GetOrdinal("CLOCK_OUT"))).ToString("hh:mm tt");
+                                ead.ClockOut = DateTime.Today.Add((TimeSpan)reader["CLOCK_OUT"]).ToString("hh:mm tt");
                             }
-                            ead.Status = reader.GetString(reader.GetOrdinal("STATUS"));
-                            ead.Overtime = reader.GetString(reader.GetOrdinal("OVERTIME"));
+                            ead.Status = reader["STATUS"].ToString();
+                            ead.Overtime = reader["OVERTIME"].ToString();
 
                             listdata.Add(ead);
                         }

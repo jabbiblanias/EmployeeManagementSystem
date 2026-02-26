@@ -30,7 +30,7 @@ namespace EmployeeManagementSystem
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnArchiveList = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -105,14 +105,14 @@ namespace EmployeeManagementSystem
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(11)))), ((int)(((byte)(97)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(29, 73);
@@ -127,6 +127,7 @@ namespace EmployeeManagementSystem
             this.dataGridView1.Size = new System.Drawing.Size(1064, 238);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
             // label1
             // 
@@ -179,12 +180,12 @@ namespace EmployeeManagementSystem
             // 
             // dateTimePickerBirth
             // 
-            this.dateTimePickerBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerBirth.Location = new System.Drawing.Point(569, 22);
+            this.dateTimePickerBirth.Location = new System.Drawing.Point(609, 25);
             this.dateTimePickerBirth.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
             this.dateTimePickerBirth.Name = "dateTimePickerBirth";
-            this.dateTimePickerBirth.Size = new System.Drawing.Size(225, 27);
+            this.dateTimePickerBirth.Size = new System.Drawing.Size(225, 24);
             this.dateTimePickerBirth.TabIndex = 19;
             this.dateTimePickerBirth.Value = new System.DateTime(2024, 6, 27, 0, 0, 0, 0);
             // 
@@ -192,7 +193,7 @@ namespace EmployeeManagementSystem
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(463, 25);
+            this.label7.Location = new System.Drawing.Point(503, 28);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 18);
@@ -322,7 +323,7 @@ namespace EmployeeManagementSystem
             "Back-End Developer",
             "Data Administrator",
             "UI/UX Design"});
-            this.addEmployee_profession.Location = new System.Drawing.Point(569, 133);
+            this.addEmployee_profession.Location = new System.Drawing.Point(609, 133);
             this.addEmployee_profession.Margin = new System.Windows.Forms.Padding(4);
             this.addEmployee_profession.Name = "addEmployee_profession";
             this.addEmployee_profession.Size = new System.Drawing.Size(225, 26);
@@ -333,7 +334,7 @@ namespace EmployeeManagementSystem
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(473, 136);
+            this.label6.Location = new System.Drawing.Point(513, 136);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 18);
@@ -343,7 +344,7 @@ namespace EmployeeManagementSystem
             // addEmployee_phoneNum
             // 
             this.addEmployee_phoneNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addEmployee_phoneNum.Location = new System.Drawing.Point(569, 81);
+            this.addEmployee_phoneNum.Location = new System.Drawing.Point(609, 81);
             this.addEmployee_phoneNum.Margin = new System.Windows.Forms.Padding(4);
             this.addEmployee_phoneNum.MaxLength = 13;
             this.addEmployee_phoneNum.Name = "addEmployee_phoneNum";
@@ -355,12 +356,12 @@ namespace EmployeeManagementSystem
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(445, 81);
+            this.label5.Location = new System.Drawing.Point(421, 84);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 18);
+            this.label5.Size = new System.Drawing.Size(176, 18);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Phone Number:";
+            this.label5.Text = "Primary Contact Number:";
             // 
             // addEmployee_gender
             // 
@@ -489,10 +490,10 @@ namespace EmployeeManagementSystem
         private System.Windows.Forms.Button addEmployee_importBtn;
         private System.Windows.Forms.PictureBox addEmployee_picture;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnArchiveList;
         private System.Windows.Forms.DateTimePicker dateTimePickerBirth;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        public System.Windows.Forms.Button btnArchiveList;
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeView));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dashboard_btn = new System.Windows.Forms.Button();
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnCalendar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,6 +51,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.dashboard_btn);
             this.panel2.Controls.Add(this.btnProfile);
             this.panel2.Controls.Add(this.btnCalendar);
             this.panel2.Controls.Add(this.label4);
@@ -64,6 +67,27 @@
             this.panel2.Size = new System.Drawing.Size(300, 695);
             this.panel2.TabIndex = 4;
             // 
+            // dashboard_btn
+            // 
+            this.dashboard_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(90)))));
+            this.dashboard_btn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.dashboard_btn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleTurquoise;
+            this.dashboard_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(135)))), ((int)(((byte)(184)))));
+            this.dashboard_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(135)))), ((int)(((byte)(184)))));
+            this.dashboard_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dashboard_btn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dashboard_btn.ForeColor = System.Drawing.Color.White;
+            this.dashboard_btn.Image = global::EmployeeManagementSystem.Properties.Resources.icons8_dashboard_30px;
+            this.dashboard_btn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dashboard_btn.Location = new System.Drawing.Point(14, 245);
+            this.dashboard_btn.Margin = new System.Windows.Forms.Padding(4);
+            this.dashboard_btn.Name = "dashboard_btn";
+            this.dashboard_btn.Size = new System.Drawing.Size(267, 50);
+            this.dashboard_btn.TabIndex = 9;
+            this.dashboard_btn.Text = "DASHBOARD";
+            this.dashboard_btn.UseVisualStyleBackColor = false;
+            this.dashboard_btn.Click += new System.EventHandler(this.dashboard_btn_Click);
+            // 
             // btnProfile
             // 
             this.btnProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(90)))));
@@ -76,7 +100,7 @@
             this.btnProfile.ForeColor = System.Drawing.Color.White;
             this.btnProfile.Image = global::EmployeeManagementSystem.Properties.Resources.icons8_employee_card_30px;
             this.btnProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProfile.Location = new System.Drawing.Point(19, 332);
+            this.btnProfile.Location = new System.Drawing.Point(14, 316);
             this.btnProfile.Margin = new System.Windows.Forms.Padding(4);
             this.btnProfile.Name = "btnProfile";
             this.btnProfile.Size = new System.Drawing.Size(267, 50);
@@ -97,7 +121,7 @@
             this.btnCalendar.ForeColor = System.Drawing.Color.White;
             this.btnCalendar.Image = global::EmployeeManagementSystem.Properties.Resources.icons8_Salary_male_30px;
             this.btnCalendar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCalendar.Location = new System.Drawing.Point(19, 403);
+            this.btnCalendar.Location = new System.Drawing.Point(13, 450);
             this.btnCalendar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCalendar.Name = "btnCalendar";
             this.btnCalendar.Size = new System.Drawing.Size(267, 50);
@@ -148,7 +172,7 @@
             this.btnAttendance.ForeColor = System.Drawing.Color.White;
             this.btnAttendance.Image = global::EmployeeManagementSystem.Properties.Resources._441061408_453642227311753_8498770109224175775_n;
             this.btnAttendance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAttendance.Location = new System.Drawing.Point(19, 264);
+            this.btnAttendance.Location = new System.Drawing.Point(14, 383);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(4);
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(267, 50);
@@ -236,6 +260,7 @@
             // 
             // panel4
             // 
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Location = new System.Drawing.Point(301, 43);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1166, 695);
@@ -279,5 +304,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnProfile;
         private System.Windows.Forms.Label greet_user;
+        private System.Windows.Forms.Button dashboard_btn;
     }
 }

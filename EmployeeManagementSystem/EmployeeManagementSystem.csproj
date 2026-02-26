@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Untitled.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Untitled.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Data.SqlClient">
@@ -77,6 +77,19 @@
       <DependentUpon>AddEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminAttendanceData.cs" />
+    <Compile Include="AdminDashboardData.cs" />
+    <Compile Include="AdminEmployeeProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminEmployeeProfile.Designer.cs">
+      <DependentUpon>AdminEmployeeProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EmployeeDashboard.Designer.cs">
+      <DependentUpon>EmployeeDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditEvent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -84,6 +97,7 @@
       <DependentUpon>EditEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="EmployeeAttendanceData.cs" />
+    <Compile Include="EmployeeDashboardData.cs" />
     <Compile Include="EventForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,12 +154,7 @@
     <Compile Include="AdministratorView.Designer.cs">
       <DependentUpon>AdministratorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Profile.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Profile.Designer.cs">
-      <DependentUpon>Profile.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ProfileData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterView.cs">
@@ -160,26 +169,20 @@
     <Compile Include="AdminSalary.Designer.cs">
       <DependentUpon>AdminSalary.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserProfile.cs">
+    <Compile Include="EmployeeProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserProfile.Designer.cs">
-      <DependentUpon>UserProfile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserProfileEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserProfileEdit.Designer.cs">
-      <DependentUpon>UserProfileEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserProfileDisplay.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserProfileDisplay.Designer.cs">
-      <DependentUpon>UserProfileDisplay.cs</DependentUpon>
+    <Compile Include="EmployeeProfile.Designer.cs">
+      <DependentUpon>EmployeeProfile.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddEvent.resx">
       <DependentUpon>AddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminEmployeeProfile.resx">
+      <DependentUpon>AdminEmployeeProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeDashboard.resx">
+      <DependentUpon>EmployeeDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditEvent.resx">
       <DependentUpon>EditEvent.cs</DependentUpon>
@@ -211,9 +214,6 @@
     <EmbeddedResource Include="AdministratorView.resx">
       <DependentUpon>AdministratorView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Profile.resx">
-      <DependentUpon>Profile.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -230,14 +230,8 @@
     <EmbeddedResource Include="AdminSalary.resx">
       <DependentUpon>AdminSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserProfile.resx">
-      <DependentUpon>UserProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserProfileEdit.resx">
-      <DependentUpon>UserProfileEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserProfileDisplay.resx">
-      <DependentUpon>UserProfileDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="EmployeeProfile.resx">
+      <DependentUpon>EmployeeProfile.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -316,7 +310,12 @@
     <None Include="Resources\warning-sign-icon-transparent-background-png.png" />
     <None Include="Resources\warning-sign-icon-transparent-background-png %281%29.png" />
     <None Include="Resources\warning-sign-icon-transparent-background-png %281%291.png" />
-    <Content Include="Untitled.ico" />
+    <None Include="Resources\circle-chevron-left-solid.png" />
+    <None Include="Resources\circle-chevron-left-solid %281%29.png" />
+    <None Include="Resources\circle-chevron-left-solid %281%291.png" />
+    <None Include="Resources\circle-chevron-left-solid %281%292.png" />
+    <None Include="Resources\circle-chevron-left-solid %281%293.png" />
+    <Content Include="Resources\Untitled.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -45,7 +45,7 @@ namespace EmployeeManagementSystem
                             ed.Name = reader["FULL_NAME"].ToString();
                             ed.DateofBirth = (DateTime)reader["DATEOFBIRTH"];
                             ed.Gender = reader["GENDER"].ToString();
-                            ed.Contact = reader["CONTACT_NUMBER"].ToString();
+                            ed.Contact = reader["PRIMARY_CONTACT_NUM"].ToString();
                             ed.Profession = reader["PROFESSION"].ToString();
                             ed.Image = reader["IMAGE"].ToString();
 
@@ -90,7 +90,7 @@ namespace EmployeeManagementSystem
                             ed.Name = reader["FULL_NAME"].ToString();
                             ed.DateofBirth = (DateTime)reader["DATEOFBIRTH"];
                             ed.Gender = reader["GENDER"].ToString();
-                            ed.Contact = reader["CONTACT_NUMBER"].ToString();
+                            ed.Contact = reader["PRIMARY_CONTACT_NUM"].ToString();
                             ed.Profession = reader["PROFESSION"].ToString();
                             ed.Image = reader["IMAGE"].ToString();
 

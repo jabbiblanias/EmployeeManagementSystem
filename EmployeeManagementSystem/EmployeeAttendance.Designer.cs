@@ -124,7 +124,7 @@
             this.dateTimePickerTo.ShowUpDown = true;
             this.dateTimePickerTo.Size = new System.Drawing.Size(121, 22);
             this.dateTimePickerTo.TabIndex = 28;
-            this.dateTimePickerTo.Value = new System.DateTime(2024, 6, 12, 0, 0, 0, 0);
+            this.dateTimePickerTo.Value = new System.DateTime(2024, 6, 30, 0, 0, 0, 0);
             // 
             // dateTimePickerFrom
             // 

@@ -42,11 +42,10 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
         }
         public void Calendar()
         {
-            GregorianCalendar gregorianCalendar = new GregorianCalendar();
             DateTime currentDate = DateTime.Now;
 
-            realYear = gregorianCalendar.GetYear(currentDate);
-            realMonth = gregorianCalendar.GetMonth(currentDate);
+            realYear = currentDate.Year;
+            realMonth = currentDate.Month;
             currentMonth = realMonth;
             currentYear = realYear;
 
@@ -76,7 +75,7 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
                 {
                     selectedDay = selectedValue.ToString();
                     WordDate = $"{months[currentMonth - 1]} {selectedDay}, {currentYear}";
-                    Date = $"{currentYear}-{currentMonth - 1}-{selectedDay}";
+                    Date = $"{currentYear}-{currentMonth}-{selectedDay}";
                 }
                 else
                 {
@@ -110,11 +109,11 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
             int currentRow = 0;
             int currentColumn = firstDayOfWeek;
 
+
             for (int day = 1; day <= daysInMonth; day++)
             {
                 dataGridView1[currentColumn, currentRow].Value = day;
                 currentColumn++;
-
                 if (currentColumn > 6)
                 {
                     currentColumn = 0;
@@ -122,28 +121,7 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
                 }
             }
             dataGridView1.ClearSelection();
-
-            if(currentMonth == realMonth && currentYear == realYear)
-            {
-                
-                int currentDay = today.Day;
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        if (cell.Value != null && (int)cell.Value == currentDay)
-                        {
-                            selectedDay = currentDay.ToString();
-                            Date = $"{currentYear}-{currentMonth - 1}-{selectedDay}";
-                            // Set the background color of the cell to highlight it
-                            cell.Style.BackColor = Color.LightBlue;
-                            return;
-                        }
-                    }
-                }
-            }
-
+            CalendarHighlights(year,month);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -158,7 +136,7 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
                 {
                     selectedDay = selectedValue.ToString();
                     WordDate = $"{months[currentMonth - 1]} {selectedDay}, {currentYear}";
-                    Date = $"{currentYear}-{currentMonth - 1}-{selectedDay}";
+                    Date = $"{currentYear}-{currentMonth}-{selectedDay}";
                 }
                 DisplayEvents();
             }
@@ -203,15 +181,25 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
                     cmd.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
                     cmd.Parameters.AddWithValue("@EVENT_DATE", Date);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    if (reader.HasRows)
                     {
-                        listBox1.Items.Add("Title: " + reader["TITLE"].ToString());
-                        listBox1.Items.Add($"Time: { DateTime.Today.Add(reader.GetTimeSpan(reader.GetOrdinal("START_TIME"))).ToString("hh:mm tt")} - { DateTime.Today.Add(reader.GetTimeSpan(reader.GetOrdinal("END_TIME"))).ToString("hh:mm tt")}");
-                        listBox1.Items.Add("Description: " +reader["DESCRIPTION"].ToString());
-                        listBox1.Items.Add("Location: " + reader["LOCATION"].ToString());
-                        listBox1.Items.Add("");
 
+                        while (reader.Read())
+                        {
+                            listBox1.Items.Add("Title: " + reader["TITLE"].ToString());
+                            listBox1.Items.Add($"Time: {DateTime.Today.Add(reader.GetTimeSpan(reader.GetOrdinal("START_TIME"))).ToString("hh:mm tt")} - {DateTime.Today.Add(reader.GetTimeSpan(reader.GetOrdinal("END_TIME"))).ToString("hh:mm tt")}");
+                            listBox1.Items.Add("Description: " + reader["DESCRIPTION"].ToString());
+                            listBox1.Items.Add("Category: " + reader["CATEGORY"].ToString());
+                            listBox1.Items.Add("Location: " + reader["LOCATION"].ToString());
+                            listBox1.Items.Add("");
+                        }
+                        listBox1.Items.RemoveAt(listBox1.Items.Count - 1);
                     }
+                    else
+                    {
+                        listBox1.Items.Add("*No events on this day*");
+                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -222,6 +210,90 @@ new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Em
             finally { 
                 connect.Close();
             }
+        }
+        private void CalendarHighlights(int year, int month)
+        {
+            //Events
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if(cell.Value != null)
+                    {
+                        try
+                        {
+                            connect.Open();
+                            string selectData = "SELECT DISTINCT CATEGORY FROM TBL_EVENTS INNER JOIN TBL_USERS ON TBL_EVENTS.ACCOUNT_ID = TBL_USERS.ACCOUNT_ID WHERE TBL_EVENTS.EVENT_DATE = @EVENT_DATE AND (TBL_EVENTS.ACCOUNT_ID = @ACCOUNT_ID OR TBL_USERS.ROLE = 'ADMINISTRATOR')";
+                            using (SqlCommand cmd = new SqlCommand(selectData, connect))
+                            {
+                                cmd.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
+                                cmd.Parameters.AddWithValue("@EVENT_DATE", $"{year}-{month}-{cell.Value.ToString()}");
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        switch (reader.GetString(0).Trim())
+                                        {
+                                            case "Personal":
+                                                cell.Style.BackColor = Color.MediumOrchid;
+                                                cell.Style.ForeColor = Color.White;
+                                                break;
+                                            case "Company Event":
+                                                cell.Style.BackColor = Color.Green;
+                                                cell.Style.ForeColor = Color.White;
+                                                break;
+                                            case "Working Holiday":
+                                                cell.Style.BackColor = Color.Orange;
+                                                cell.Style.ForeColor = Color.White;
+                                                break;
+                                            case "Non-Working Holiday":
+                                                cell.Style.BackColor = Color.Purple;
+                                                cell.Style.ForeColor = Color.White;
+                                                break;
+                                            case "Company No Working Day":
+                                                cell.Style.BackColor = Color.Red;
+                                                cell.Style.ForeColor = Color.White;
+                                                break;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex
+                                , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            connect.Close();
+                        }
+                    }
+                }
+            }
+
+            //Today
+            if (currentMonth == realMonth && currentYear == realYear)
+            {
+
+                int currentDay = today.Day;
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null && (int)cell.Value == currentDay)
+                        {
+                            selectedDay = currentDay.ToString();
+                            Date = $"{currentYear}-{currentMonth}-{selectedDay}";
+                            // Set the background color of the cell to highlight it
+                            cell.Style.BackColor = Color.LightBlue;
+                        }
+                    }
+                }
+            }
+
         }
     }
 }

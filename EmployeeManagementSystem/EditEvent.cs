@@ -81,15 +81,19 @@ namespace EmployeeManagementSystem
                         if (reader.Read())
                         {
                             bool TitleExists = reader.GetInt32(0) == 1;
-
+                            connect.Close();
                             if (TitleExists)
                             {
                                 MessageBox.Show("The title is already taken, name a different title."
                                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                            else if (string.IsNullOrWhiteSpace(textBoxTitle.Text.Trim()))
+                            {
+                                MessageBox.Show("The title cannot be empty"
+                                    , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                             else
                             {
-                                connect.Close();
                                 connect.Open();
 
                                 string updateData = "UPDATE TBL_EVENTS SET TITLE = @TITLE, DESCRIPTION = @DESCRIPTION, LOCATION = @LOCATION, START_TIME = @START_TIME, END_TIME = @END_TIME " +

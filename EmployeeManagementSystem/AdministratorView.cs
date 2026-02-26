@@ -18,11 +18,10 @@ namespace EmployeeManagementSystem
         {
             InitializeComponent();
             this.loginView = loginView;
-            currentControl = new AdminDashboard();
+            currentControl = new AdminDashboard(loginView);
             panel4.Controls.Add(currentControl);
             greet_user.Text += loginView.Username;
         }
-
         private void exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -43,19 +42,19 @@ namespace EmployeeManagementSystem
 
         private void dashboard_btn_Click(object sender, EventArgs e)
         {
-            changeCurrentPanel(new AdminDashboard());
+            changeCurrentPanel(new AdminDashboard(loginView));
         }
 
         private void addEmployee_btn_Click(object sender, EventArgs e)
         {
-            changeCurrentPanel(new AdminAddEmployee());
+            changeCurrentPanel(new AdminAddEmployee(this));
         }
 
         private void salary_btn_Click(object sender, EventArgs e)
         {
             changeCurrentPanel(new AdminSalary());
         }
-        private void changeCurrentPanel(UserControl newUserControl)
+        public void changeCurrentPanel(UserControl newUserControl)
         {
             panel4.Controls.Remove(currentControl);
             panel4.Controls.Add(newUserControl);

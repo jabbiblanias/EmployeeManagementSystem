@@ -81,15 +81,15 @@ namespace EmployeeManagementSystem
                             }
                             else
                             {
-                                MessageBox.Show("Incorrect Username/Password"
+                                MessageBox.Show("Incorrect Username/Password/Role"
                                     , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Pick your role"
-                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error: " + ex
+                    , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     finally
                     {

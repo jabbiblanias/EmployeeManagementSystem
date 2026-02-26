@@ -123,6 +123,56 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap circle_chevron_left_solid {
+            get {
+                object obj = ResourceManager.GetObject("circle-chevron-left-solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_ {
+            get {
+                object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_2 {
+            get {
+                object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_3 {
+            get {
+                object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap circle_plus_solid {
             get {
                 object obj = ResourceManager.GetObject("circle-plus-solid", resourceCulture);

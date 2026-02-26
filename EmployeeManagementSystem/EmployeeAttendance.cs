@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Drawing;
 
 namespace EmployeeManagementSystem
 {
     public partial class EmployeeAttendance : UserControl
     {
-        DateTime today = DateTime.Now;
+        DateTime dateTime = DateTime.Now;
+        DateTime today = DateTime.Today;
         LoginView loginView;
         SqlConnection connect =
             new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Employee;User ID=ja;Password=john");
@@ -22,17 +18,21 @@ namespace EmployeeManagementSystem
         {
             InitializeComponent();
             this.loginView = loginView;
+            CurrentTimeAndDate();
             LimitDate();
             EmployeeDetail();
             displayEmployeeAttendaceListData();
-            CurrentTimeAndDate();
         }
         private void LimitDate()
         {
             dateTimePickerDate.Value = today;
             dateTimePickerDate.MaxDate = today;
+
+
             dateTimePickerFrom.Value = today;
             dateTimePickerFrom.MaxDate = today;
+
+
             dateTimePickerTo.Value = today;
             dateTimePickerTo.MaxDate = today;
         }
@@ -49,7 +49,7 @@ namespace EmployeeManagementSystem
                 string selectData = "SELECT CLOCK_IN, CLOCK_OUT FROM TBL_ATTENDANCE WHERE DATE = @DATE AND ACCOUNT_ID = @ACCOUNT_ID";
                 using (SqlCommand cmd = new SqlCommand(selectData, connect))
                 {
-                    cmd.Parameters.AddWithValue("@DATE", today.Date);
+                    cmd.Parameters.AddWithValue("@DATE", today);
                     cmd.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
                     int count = cmd.ExecuteNonQuery();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -113,69 +113,98 @@ namespace EmployeeManagementSystem
 
         private void btnClockIn_Click(object sender, EventArgs e)
         {
-            string formattedDate = today.ToString("yyyy-MM-dd"); ;
-            string formattedTime = formattedTime = today.ToString("hh:mm tt");
-            if (btnClockIn.Text == "Clock In")
+            string formattedDate = dateTime.ToString("yyyy-MM-dd"); ;
+            string formattedTime = dateTime.ToString("hh:mm tt");
+            int firstDayOfWeek = (int)today.DayOfWeek;
+            if (firstDayOfWeek == 0 || firstDayOfWeek == 6)
             {
-                try
-                {
-                    connect.Open();
-                    string selectData = @"IF NOT EXISTS (SELECT 1 FROM TBL_ATTENDANCE WHERE DATE = @DATE AND ACCOUNT_ID = @ACCOUNT_ID) 
-                        BEGIN
-                             INSERT INTO TBL_ATTENDANCE (DATE, CLOCK_IN, ACCOUNT_ID) 
-                             VALUES(@DATE, @CLOCK_IN, @ACCOUNT_ID)
-                        END";
-                    using (SqlCommand cmd = new SqlCommand(selectData, connect))
-                    {
-                        cmd.Parameters.AddWithValue("@DATE", formattedDate);
-                        cmd.Parameters.AddWithValue("@CLOCK_IN", DateTime.Parse(formattedTime).TimeOfDay);
-                        cmd.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
-
-                        int count = cmd.ExecuteNonQuery();
-                        connect.Close();
-                        if (count < 0)
-                        {
-                            MessageBox.Show("You have already attendance for today"
-                                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            btnClockIn.Text = "Clock Out";
-                            lblStart.Text = formattedTime;
-                            displayEmployeeAttendaceListData();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex
-                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("There's currently no work for today"
+                            , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                try
+                if (btnClockIn.Text == "Clock In")
                 {
-
-                    connect.Open();
-                    string selectData = "UPDATE TBL_ATTENDANCE SET CLOCK_OUT = @CLOCK_OUT WHERE ACCOUNT_ID = @ACCOUNT_ID AND DATE = @DATE AND CLOCK_OUT IS NULL ";
-                    using (SqlCommand cmd = new SqlCommand(selectData, connect))
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@DATE", formattedDate);
-                        cmd.Parameters.AddWithValue("@CLOCK_OUT", DateTime.Parse(formattedTime).TimeOfDay);
-                        cmd.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
 
-                        cmd.ExecuteNonQuery();
-                        connect.Close();
+                        TimeSpan timeStart = new TimeSpan(7, 30, 0);
+                        string status;
+                        if (DateTime.Parse(formattedTime).TimeOfDay <= timeStart)
+                        {
+                            status = "On Time";
+                        }
+                        else
+                        {
+                            status = "Late";
+                        }
+                        connect.Open();
+                        string selectData = @"IF NOT EXISTS (SELECT 1 FROM TBL_ATTENDANCE WHERE DATE = @DATE AND ACCOUNT_ID = @ACCOUNT_ID) 
+                        BEGIN
+                             INSERT INTO TBL_ATTENDANCE (DATE, CLOCK_IN, STATUS, ACCOUNT_ID) 
+                             VALUES(@DATE, @CLOCK_IN, @STATUS, @ACCOUNT_ID)
+                        END";
+                        using (SqlCommand cmd = new SqlCommand(selectData, connect))
+                        {
+                            cmd.Parameters.AddWithValue("@DATE", formattedDate);
+                            cmd.Parameters.AddWithValue("@CLOCK_IN", DateTime.Parse(formattedTime).TimeOfDay);
+                            cmd.Parameters.AddWithValue("@STATUS", status);
+                            cmd.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
+
+                            int count = cmd.ExecuteNonQuery();
+                            connect.Close();
+
+                            if (count < 0)
+                            {
+                                MessageBox.Show("You have already attendance for today"
+                                            , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                btnClockIn.Text = "Clock Out";
+                                lblStart.Text = formattedTime;
+                                displayEmployeeAttendaceListData();
+                            }
+                        }
                     }
-                    btnClockIn.Text = "Clock In";
-                    lblEnd.Text = formattedTime;
-                    displayEmployeeAttendaceListData();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex
+                            , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Error: " + ex
-                        , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    try
+                    {
+                        TimeSpan overtime = new TimeSpan(0, 0, 0);
+                        TimeSpan timeEnd = new TimeSpan(16, 30, 0);
+                        if ((DateTime.Parse(formattedTime).TimeOfDay) >= timeEnd)
+                        {
+
+                            overtime = (DateTime.Parse(formattedTime).TimeOfDay) - timeEnd;
+                        }
+
+                        connect.Open();
+                        string updateData = "UPDATE TBL_ATTENDANCE SET CLOCK_OUT = @CLOCK_OUT, OVERTIME = @OVERTIME WHERE ACCOUNT_ID = @ACCOUNT_ID AND DATE = @DATE AND CLOCK_OUT IS NULL ";
+                        using (SqlCommand com = new SqlCommand(updateData, connect))
+                        {
+                            com.Parameters.AddWithValue("@DATE", formattedDate);
+                            com.Parameters.AddWithValue("@CLOCK_OUT", DateTime.Parse(formattedTime).TimeOfDay);
+                            com.Parameters.AddWithValue("@OVERTIME", overtime);
+                            com.Parameters.AddWithValue("@ACCOUNT_ID", loginView.ID);
+
+                            com.ExecuteNonQuery();
+                            connect.Close();
+                        }
+                        lblEnd.Text = formattedTime;
+                        displayEmployeeAttendaceListData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex
+                            , "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -183,9 +212,10 @@ namespace EmployeeManagementSystem
         {
             while (true)
             {
-                toolStripLabelTime.Text = today.ToString("hh:mm:ss tt");
+                DateTime dateTime = DateTime.Now;
+                toolStripLabelTime.Text = dateTime.ToString("hh:mm:ss tt");
 
-                toolStripLabelDate.Text = today.ToString("MM/dd/yyyy");
+                toolStripLabelDate.Text = dateTime.ToString("MM/dd/yyyy");
                 await Task.Delay(1000); // Wait for 1 second
             }
         }
@@ -211,7 +241,6 @@ namespace EmployeeManagementSystem
             int toMonth = selectedTo.Month;
             int toYear = selectedTo.Year;
 
-            int compare = selectedFrom.CompareTo(selectedTo);
             if (selectedFrom <= selectedTo)
             {
                 EmployeeAttendanceData employeeAttendanceData = new EmployeeAttendanceData(loginView);

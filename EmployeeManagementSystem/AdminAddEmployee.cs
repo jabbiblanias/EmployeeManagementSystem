@@ -1,30 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
 
 namespace EmployeeManagementSystem
 {
     public partial class AdminAddEmployee : UserControl
     {
+        AdministratorView administratorView;
         SqlConnection connect =
             new SqlConnection(@"Data Source=LAPTOP-0OGAQKFF\SQLEXPRESS;Initial Catalog=DB_Employee;User ID=ja;Password=john");
-        public AdminAddEmployee()
+        public AdminAddEmployee(AdministratorView administratorView)
         {
             InitializeComponent();
+            this.administratorView = administratorView;
             // TO DISPLAY THE DATA FROM DATABASE TO YOUR DATA GRID VIEW
             displayEmployeeData();
             dataGridView1.ClearSelection();
-
         }
         public void displayEmployeeData()
         {
@@ -96,8 +92,8 @@ namespace EmployeeManagementSystem
                         connect.Open();
                         DateTime today = DateTime.Today;
                         string updateData = "UPDATE TBL_EMPLOYEE_INFO SET FULL_NAME = @FULL_NAME, DATEOFBIRTH = @DATEOFBIRTH" +
-                            ", GENDER = @GENDER, CONTACT_NUMBER = @CONTACT_NUMBER" +
-                            ", PROFESSION = @PROFESSION, UPDATE_DATE = @UPDATE_DATE " +
+                            ", GENDER = @GENDER, PRIMARY_CONTACT_NUM = @PRIMARY_CONTACT_NUM" +
+                            ", PROFESSION = @PROFESSION, DATE_MODIFIED = @DATE_MODIFIED " +
                             "WHERE EMPLOYEE_ID = @EMPLOYEE_ID";
 
                         string path = Path.Combine(@"C:\Users\John April\Downloads\EmployeeManagementSystem\EmployeeManagementSystem\EmployeeManagementSystem\ImageLocation\"
@@ -123,9 +119,9 @@ namespace EmployeeManagementSystem
                             cmd.Parameters.AddWithValue("@FULL_NAME", addEmployee_fullName.Text.Trim());
                             cmd.Parameters.AddWithValue("@DATEOFBIRTH", dateTimePickerBirth.Value.ToString("yyyy-MM-dd"));
                             cmd.Parameters.AddWithValue("@GENDER", addEmployee_gender.Text.Trim());
-                            cmd.Parameters.AddWithValue("@CONTACT_NUMBER", addEmployee_phoneNum.Text.Trim());
+                            cmd.Parameters.AddWithValue("@PRIMARY_CONTACT_NUM", addEmployee_phoneNum.Text.Trim());
                             cmd.Parameters.AddWithValue("@PROFESSION", addEmployee_profession.Text.Trim());
-                            cmd.Parameters.AddWithValue("@UPDATE_DATE", today);
+                            cmd.Parameters.AddWithValue("@DATE_MODIFIED", today);
                             cmd.Parameters.AddWithValue("@EMPLOYEE_ID", addEmployee_id.Text.Trim());
 
                             cmd.ExecuteNonQuery();
@@ -188,10 +184,10 @@ namespace EmployeeManagementSystem
                             {
                                 DateTime today = DateTime.Today;
                                 string insertData = "INSERT INTO TBL_EMPLOYEE_INFO " +
-                                    "(EMPLOYEE_ID, FULL_NAME, DATEOFBIRTH, GENDER, CONTACT_NUMBER" +
-                                    ", PROFESSION, IMAGE, SALARY, INSERT_DATE) " +
-                                    "VALUES(@EMPLOYEE_ID, @FULL_NAME, @DATEOFBIRTH, @GENDER, @CONTACT_NUMBER" +
-                                    ", @PROFESSION, @IMAGE, @SALARY, @INSERT_DATE)";
+                                    "(EMPLOYEE_ID, FULL_NAME, DATEOFBIRTH, GENDER, PRIMARY_CONTACT_NUM" +
+                                    ", PROFESSION, IMAGE, SALARY, DATE_CREATED) " +
+                                    "VALUES(@EMPLOYEE_ID, @FULL_NAME, @DATEOFBIRTH, @GENDER, @PRIMARY_CONTACT_NUM" +
+                                    ", @PROFESSION, @IMAGE, @SALARY, @DATE_CREATED)";
 
                                 string path = Path.Combine(@"C:\Users\John April\Downloads\EmployeeManagementSystem\EmployeeManagementSystem\EmployeeManagementSystem\ImageLocation\"
                                     + addEmployee_id.Text.Trim() + ".jpg");
@@ -213,11 +209,11 @@ namespace EmployeeManagementSystem
                                     cmd.Parameters.AddWithValue("@FULL_NAME", addEmployee_fullName.Text.Trim());
                                     cmd.Parameters.AddWithValue("@DATEOFBIRTH", dateTimePickerBirth.Value.ToString("yyyy-MM-dd"));
                                     cmd.Parameters.AddWithValue("@GENDER", addEmployee_gender.SelectedItem.ToString().Trim());
-                                    cmd.Parameters.AddWithValue("@CONTACT_NUMBER", addEmployee_phoneNum.Text.Trim());
+                                    cmd.Parameters.AddWithValue("@PRIMARY_CONTACT_NUM", addEmployee_phoneNum.Text.Trim());
                                     cmd.Parameters.AddWithValue("@PROFESSION", addEmployee_profession.SelectedItem.ToString().Trim());
                                     cmd.Parameters.AddWithValue("@IMAGE", path);
                                     cmd.Parameters.AddWithValue("@SALARY", 0);
-                                    cmd.Parameters.AddWithValue("@INSERT_DATE", today);
+                                    cmd.Parameters.AddWithValue("@DATE_CREATED", today);
 
                                     cmd.ExecuteNonQuery();
                                     connect.Close();
@@ -298,23 +294,7 @@ namespace EmployeeManagementSystem
 
         private void btnArchiveList_Click(object sender, EventArgs e)
         {
-
-            if (btnArchiveList.Text.Equals("Active List"))
-            {
-                btnArchiveList.Text = "Archive List";
-                addEmployee_archiveBtn.Text = "Archive";
-                displayEmployeeData();
-                enableTextBoxAndButton();
-            }
-            else
-            {
-                btnArchiveList.Text = "Active List";
-                addEmployee_archiveBtn.Text = "Unarchive";
-                displayArchiveEmployeeData();
-                disableTextBoxAndButton();
-                clearFields();
-                removeErrors();
-            }
+            checkArchive();
         }
 
         private void addEmployee_archiveBtn_Click(object sender, EventArgs e)
@@ -545,6 +525,34 @@ namespace EmployeeManagementSystem
             else
             {
                 return false;
+            }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                administratorView.changeCurrentPanel(new AdminEmployeeProfile(administratorView, row.Cells[1].Value.ToString()));
+            }
+        }
+        public void checkArchive()
+        {
+            if (btnArchiveList.Text.Equals("Active List"))
+            {
+                btnArchiveList.Text = "Archive List";
+                addEmployee_archiveBtn.Text = "Archive";
+                displayEmployeeData();
+                enableTextBoxAndButton();
+            }
+            else
+            {
+                btnArchiveList.Text = "Active List";
+                addEmployee_archiveBtn.Text = "Unarchive";
+                displayArchiveEmployeeData();
+                disableTextBoxAndButton();
+                clearFields();
+                removeErrors();
             }
         }
     }

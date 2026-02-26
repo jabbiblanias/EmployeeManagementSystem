@@ -19,7 +19,7 @@ namespace EmployeeManagementSystem
             InitializeComponent();
             this.loginView = loginView;
             greet_user.Text += loginView.Username;
-            changeCurrentPanel(new EmployeeAttendance(loginView));
+            changeCurrentPanel(new EmployeeDashboard(loginView));
         }
         private void changeCurrentPanel(UserControl newUserControl)
         {
@@ -50,7 +50,7 @@ namespace EmployeeManagementSystem
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            changeCurrentPanel(new UserProfile(loginView));
+            changeCurrentPanel(new EmployeeProfile(loginView));
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
@@ -63,6 +63,11 @@ namespace EmployeeManagementSystem
                 loginView.Show();
                 this.Hide();
             }
+        }
+
+        private void dashboard_btn_Click(object sender, EventArgs e)
+        {
+            changeCurrentPanel(new EmployeeDashboard(loginView));
         }
     }
 }
