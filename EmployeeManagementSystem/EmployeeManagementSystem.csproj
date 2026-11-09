@@ -51,13 +51,28 @@
     <ApplicationIcon>Resources\Untitled.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCrypt-Net-Next, Version=4.2.0.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net-Next.4.2.0\lib\net472\BCrypt-Net-Next.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.SqlClient">
       <HintPath>..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\Microsoft.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,152 +85,162 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEvent.cs">
+    <Compile Include="Data\DatabaseConnection.cs" />
+    <Compile Include="Forms\AddEvent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddEvent.Designer.cs">
+    <Compile Include="Forms\AddEvent.Designer.cs">
       <DependentUpon>AddEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminAttendanceData.cs" />
-    <Compile Include="AdminDashboardData.cs" />
-    <Compile Include="AdminEmployeeProfile.cs">
+    <Compile Include="Forms\AdminEmployeeProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminEmployeeProfile.Designer.cs">
+    <Compile Include="Forms\AdminEmployeeProfile.Designer.cs">
       <DependentUpon>AdminEmployeeProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeDashboard.cs">
+    <Compile Include="Forms\EmployeeDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EmployeeDashboard.Designer.cs">
+    <Compile Include="Forms\EmployeeDashboard.Designer.cs">
       <DependentUpon>EmployeeDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditEvent.cs">
+    <Compile Include="Forms\EditEvent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EditEvent.Designer.cs">
+    <Compile Include="Forms\EditEvent.Designer.cs">
       <DependentUpon>EditEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeAttendanceData.cs" />
-    <Compile Include="EmployeeDashboardData.cs" />
-    <Compile Include="EventForm.cs">
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Repositories\AttendanceRepository.cs" />
+    <Compile Include="Repositories\DashboardRepository.cs" />
+    <Compile Include="Forms\EventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EventForm.Designer.cs">
+    <Compile Include="Forms\EventForm.Designer.cs">
       <DependentUpon>EventForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminAddEmployee.cs">
+    <Compile Include="Forms\AdminAddEmployee.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminAddEmployee.Designer.cs">
+    <Compile Include="Forms\AdminAddEmployee.Designer.cs">
       <DependentUpon>AdminAddEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminAttendance.cs">
+    <Compile Include="Forms\AdminAttendance.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminAttendance.Designer.cs">
+    <Compile Include="Forms\AdminAttendance.Designer.cs">
       <DependentUpon>AdminAttendance.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminDashboard.cs">
+    <Compile Include="Forms\AdminDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminDashboard.Designer.cs">
+    <Compile Include="Forms\AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminEmployeesData.cs" />
-    <Compile Include="AdminSalaryData.cs" />
-    <Compile Include="EmployeeAttendance.cs">
+    <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Forms\EmployeeAttendance.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EmployeeAttendance.Designer.cs">
+    <Compile Include="Forms\EmployeeAttendance.Designer.cs">
       <DependentUpon>EmployeeAttendance.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeView.cs">
+    <Compile Include="Forms\EmployeeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeeView.Designer.cs">
+    <Compile Include="Forms\EmployeeView.Designer.cs">
       <DependentUpon>EmployeeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventCalendar.cs">
+    <Compile Include="Forms\EventCalendar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EventCalendar.Designer.cs">
+    <Compile Include="Forms\EventCalendar.Designer.cs">
       <DependentUpon>EventCalendar.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginView.cs">
+    <Compile Include="Forms\LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginView.Designer.cs">
+    <Compile Include="Forms\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdministratorView.cs">
+    <Compile Include="Forms\AdministratorView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdministratorView.Designer.cs">
+    <Compile Include="Forms\AdministratorView.Designer.cs">
       <DependentUpon>AdministratorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProfileData.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
+    <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterView.cs">
+    <Compile Include="Forms\RegisterView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegisterView.Designer.cs">
+    <Compile Include="Forms\RegisterView.Designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminSalary.cs">
+    <Compile Include="Forms\AdminSalary.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminSalary.Designer.cs">
+    <Compile Include="Forms\AdminSalary.Designer.cs">
       <DependentUpon>AdminSalary.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeProfile.cs">
+    <Compile Include="Forms\EmployeeProfile.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="EmployeeProfile.Designer.cs">
+    <Compile Include="Forms\EmployeeProfile.Designer.cs">
       <DependentUpon>EmployeeProfile.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddEvent.resx">
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Services\AttendanceService.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\DashboardService.cs" />
+    <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\EventService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
+    <EmbeddedResource Include="Forms\AddEvent.resx">
       <DependentUpon>AddEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminEmployeeProfile.resx">
+    <EmbeddedResource Include="Forms\AdminEmployeeProfile.resx">
       <DependentUpon>AdminEmployeeProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeDashboard.resx">
+    <EmbeddedResource Include="Forms\EmployeeDashboard.resx">
       <DependentUpon>EmployeeDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditEvent.resx">
+    <EmbeddedResource Include="Forms\EditEvent.resx">
       <DependentUpon>EditEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EventForm.resx">
+    <EmbeddedResource Include="Forms\EventForm.resx">
       <DependentUpon>EventForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminAddEmployee.resx">
+    <EmbeddedResource Include="Forms\AdminAddEmployee.resx">
       <DependentUpon>AdminAddEmployee.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminAttendance.resx">
+    <EmbeddedResource Include="Forms\AdminAttendance.resx">
       <DependentUpon>AdminAttendance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminDashboard.resx">
+    <EmbeddedResource Include="Forms\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeAttendance.resx">
+    <EmbeddedResource Include="Forms\EmployeeAttendance.resx">
       <DependentUpon>EmployeeAttendance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeView.resx">
+    <EmbeddedResource Include="Forms\EmployeeView.resx">
       <DependentUpon>EmployeeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EventCalendar.resx">
+    <EmbeddedResource Include="Forms\EventCalendar.resx">
       <DependentUpon>EventCalendar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginView.resx">
+    <EmbeddedResource Include="Forms\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdministratorView.resx">
+    <EmbeddedResource Include="Forms\AdministratorView.resx">
       <DependentUpon>AdministratorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -224,15 +249,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RegisterView.resx">
+    <EmbeddedResource Include="Forms\RegisterView.resx">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminSalary.resx">
+    <EmbeddedResource Include="Forms\AdminSalary.resx">
       <DependentUpon>AdminSalary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeeProfile.resx">
+    <EmbeddedResource Include="Forms\EmployeeProfile.resx">
       <DependentUpon>EmployeeProfile.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -273,9 +299,7 @@
   <ItemGroup>
     <None Include="Resources\icons8_group_background_selected_60px.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImageLocation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\pexels-jane-doan-1024248.jpg" />
   </ItemGroup>

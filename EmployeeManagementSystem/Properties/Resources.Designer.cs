@@ -22,7 +22,7 @@ namespace EmployeeManagementSystem.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace EmployeeManagementSystem.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EmployeeManagementSystem.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace EmployeeManagementSystem.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _436498113_1154434318936577_3750769986040204641_n {
+        public static System.Drawing.Bitmap _436498113_1154434318936577_3750769986040204641_n {
             get {
                 object obj = ResourceManager.GetObject("436498113_1154434318936577_3750769986040204641_n", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _441010375_515687484317540_6693635555779905896_n {
+        public static System.Drawing.Bitmap _441010375_515687484317540_6693635555779905896_n {
             get {
                 object obj = ResourceManager.GetObject("441010375_515687484317540_6693635555779905896_n", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _441061408_453642227311753_8498770109224175775_n {
+        public static System.Drawing.Bitmap _441061408_453642227311753_8498770109224175775_n {
             get {
                 object obj = ResourceManager.GetObject("441061408_453642227311753_8498770109224175775_n", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _446007159_1607894993308162_8682050581221841160_n {
+        public static System.Drawing.Bitmap _446007159_1607894993308162_8682050581221841160_n {
             get {
                 object obj = ResourceManager.GetObject("446007159_1607894993308162_8682050581221841160_n", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _446029377_2478588845861985_327091876621610325_n {
+        public static System.Drawing.Bitmap _446029377_2478588845861985_327091876621610325_n {
             get {
                 object obj = ResourceManager.GetObject("446029377_2478588845861985_327091876621610325_n", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap calendar_regular {
+        public static System.Drawing.Bitmap calendar_regular {
             get {
                 object obj = ResourceManager.GetObject("calendar-regular", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_chevron_left_solid {
+        public static System.Drawing.Bitmap circle_chevron_left_solid {
             get {
                 object obj = ResourceManager.GetObject("circle-chevron-left-solid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_ {
+        public static System.Drawing.Bitmap circle_chevron_left_solid__1_ {
             get {
                 object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_1 {
+        public static System.Drawing.Bitmap circle_chevron_left_solid__1_1 {
             get {
                 object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_2 {
+        public static System.Drawing.Bitmap circle_chevron_left_solid__1_2 {
             get {
                 object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_chevron_left_solid__1_3 {
+        public static System.Drawing.Bitmap circle_chevron_left_solid__1_3 {
             get {
                 object obj = ResourceManager.GetObject("circle-chevron-left-solid (1)3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap circle_plus_solid {
+        public static System.Drawing.Bitmap circle_plus_solid {
             get {
                 object obj = ResourceManager.GetObject("circle-plus-solid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_dashboard_30px {
+        public static System.Drawing.Bitmap icons8_dashboard_30px {
             get {
                 object obj = ResourceManager.GetObject("icons8_dashboard_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_employee_card_100px {
+        public static System.Drawing.Bitmap icons8_employee_card_100px {
             get {
                 object obj = ResourceManager.GetObject("icons8_employee_card_100px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_employee_card_30px {
+        public static System.Drawing.Bitmap icons8_employee_card_30px {
             get {
                 object obj = ResourceManager.GetObject("icons8_employee_card_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +213,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_employee_card_60px_1 {
+        public static System.Drawing.Bitmap icons8_employee_card_60px_1 {
             get {
                 object obj = ResourceManager.GetObject("icons8_employee_card_60px_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +223,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_group_background_selected_60px {
+        public static System.Drawing.Bitmap icons8_group_background_selected_60px {
             get {
                 object obj = ResourceManager.GetObject("icons8_group_background_selected_60px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +233,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_group_background_selected_filled_60px {
+        public static System.Drawing.Bitmap icons8_group_background_selected_filled_60px {
             get {
                 object obj = ResourceManager.GetObject("icons8_group_background_selected_filled_60px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +243,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_logout_rounded_up_filled_25px {
+        public static System.Drawing.Bitmap icons8_logout_rounded_up_filled_25px {
             get {
                 object obj = ResourceManager.GetObject("icons8_logout_rounded_up_filled_25px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +253,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_Salary_male_30px {
+        public static System.Drawing.Bitmap icons8_Salary_male_30px {
             get {
                 object obj = ResourceManager.GetObject("icons8_Salary_male_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +263,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pexels_jane_doan_1024248 {
+        public static System.Drawing.Bitmap pexels_jane_doan_1024248 {
             get {
                 object obj = ResourceManager.GetObject("pexels-jane-doan-1024248", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +273,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Picture1 {
+        public static System.Drawing.Bitmap Picture1 {
             get {
                 object obj = ResourceManager.GetObject("Picture1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +283,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user_solid {
+        public static System.Drawing.Bitmap user_solid {
             get {
                 object obj = ResourceManager.GetObject("user-solid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +293,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user_solid1 {
+        public static System.Drawing.Bitmap user_solid1 {
             get {
                 object obj = ResourceManager.GetObject("user-solid1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +303,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning_sign_icon_transparent_background_png {
+        public static System.Drawing.Bitmap warning_sign_icon_transparent_background_png {
             get {
                 object obj = ResourceManager.GetObject("warning-sign-icon-transparent-background-png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +313,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning_sign_icon_transparent_background_png__1_ {
+        public static System.Drawing.Bitmap warning_sign_icon_transparent_background_png__1_ {
             get {
                 object obj = ResourceManager.GetObject("warning-sign-icon-transparent-background-png (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +323,7 @@ namespace EmployeeManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap warning_sign_icon_transparent_background_png__1_1 {
+        public static System.Drawing.Bitmap warning_sign_icon_transparent_background_png__1_1 {
             get {
                 object obj = ResourceManager.GetObject("warning-sign-icon-transparent-background-png (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
